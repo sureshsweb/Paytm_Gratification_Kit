@@ -11,10 +11,10 @@ var samarray = new Array();
 samarray = 
 {"request":
 {"requestType":"VERIFY",
-"merchantGuid":"c3a38441-c113-4ab8-9f3e-e6e31e2c77eb",
+"merchantGuid":"XXXXXXXXXXXXXXXXXXXXXXXXXXX",
 "merchantOrderId":"ORDS33954359",
 "salesWalletName":null,
-"salesWalletGuid":"0e27569c-0522-489c-aed8-430c2f540932",
+"salesWalletGuid":"XXXXXXXXXXXXXXXXXXXXXXXXXXX",
 "payeeEmailId":null,
 "payeePhoneNumber":"9711139557",
 "payeeSsoId":"",
@@ -28,7 +28,7 @@ samarray =
 
 
 var finalstring = JSON.stringify(samarray);
- checksum.genchecksumbystring(finalstring, "w_vILoXKErDgmtOs", function (err, result) 
+ checksum.genchecksumbystring(finalstring, "XXXXXXXXXXXX", function (err, result) 
         {
             request({
             url: 'http://trust-uat.paytm.in/wallet-web/salesToUserCredit', //URL to hit
@@ -36,7 +36,7 @@ var finalstring = JSON.stringify(samarray);
             method: 'POST',
             headers: {
                     'Content-Type': 'application/json',
-                    'mid': 'c3a38441-c113-4ab8-9f3e-e6e31e2c77eb',
+                    'mid': 'XXXXXXXXXXXXXXXXXXXXXXXXXXX',
                     'checksumhash': result
                      },
             body: finalstring//Set the body as a string
