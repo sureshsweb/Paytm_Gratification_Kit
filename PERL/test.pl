@@ -10,8 +10,6 @@ use HTTP::Request::Common;
 use Time::HiRes qw(gettimeofday);
 
 my $timestamp = int (gettimeofday * 1000);
-$userKey ="fadkavor570bjhgv9rzbznqqtnke8g6h";
-$macKey="izj8tztu7onqy90fym8amcdfgloh216e";
 $applicationType="application/json";
 $currentTime = $timestamp;
 $nonce=$currentTime;
