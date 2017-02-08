@@ -1,0 +1,51 @@
+string merchantguid = "axxxxxxx-bxxx-cxxx-dxxx-exxxxxxxxxxx";
+string orderid = DateTime.Now.Ticks.ToString();
+string AesKey = "ABDCEF1234567890"; // 16 digits Merchant Key or Aes Key
+string saleswalletid = "1xxxxxxx-2xxx-3xxx-4xxx-5xxxxxxxxxxx";
+string phone = "98xxxxxxxx";
+string postData = "{\"request\":{\"requestType\":\"null\",\"merchantGuid\":\""+merchantguid+"\",\"merchantOrderId\":\""+orderid+"\",\"salesWalletName\":\"\",\"salesWalletGuid\":\""+ saleswalletid+"\",\"payeeEmailId\":\"email@paytm.com\",\"payeePhoneNumber\":\""+phone+"\",\"payeeSsoId\":\"\",\"appliedToNewUsers\":\"N\",\"amount\":\"1\",\"currencyCode\":\"INR\"},\"metadata\":\"Testing Data\",\"ipAddress\":\"192.168.1.1\",\"operationType\":\"SALES_TO_USER_CREDIT\",\"platformName\":\"PayTM\"}";
+
+string checksum = paytm.CheckSum.generateCheckSumByJson(AesKey, postData);
+string uri = "https://trust-uat.paytm.in/wallet-web/salesToUserCredit";
+
+HttpWebRequest webRequest = (HttpWebRequest)WebRequest.Create(uri);
+webRequest.Method = "POST";
+webRequest.Accept = "application/json";
+webRequest.ContentType = "application/json";
+webRequest.Headers.Add("mid", merchantguid);
+webRequest.Headers.Add("checksumhash", checksum);;
+
+webRequest.ContentLength = postData.Length;
+try
+{
+    using (StreamWriter requestWriter2 = new StreamWriter(webRequest.GetRequestStream()))
+    {
+        requestWriter2.Write(postData);
+    }
+
+    //  This actually does the request and gets the response back;
+
+    string responseData = string.Empty;
+
+    using (StreamReader responseReader = new StreamReader(webRequest.GetResponse().GetResponseStream()))
+    {
+        responseData = responseReader.ReadToEnd();
+
+        Response.Write(responseData);
+    }
+}
+catch (WebException web)
+{
+    HttpWebResponse res = web.Response as HttpWebResponse;
+    Stream s = res.GetResponseStream();
+    string message;
+    using (StreamReader sr = new StreamReader(s))
+    {
+        message = sr.ReadToEnd(); 
+        Response.Write(message);
+    }
+}
+catch (Exception ex)
+{
+    Response.Write(ex.Message);
+}
