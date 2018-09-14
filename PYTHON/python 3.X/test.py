@@ -31,7 +31,7 @@ for (key, value) in hmacHeaders.items():
     headerValue.insert(i,val)
     i += 1
 
-print headerValue
+print(headerValue)
 
 c = pycurl.Curl() 
 c.setopt(c.URL, 'http://trust-uat.paytm.in/wallet-web/salesToUserCredit')
@@ -41,5 +41,5 @@ c.setopt(c.HTTPHEADER,headerValue)
 c.perform()
 
 
-print c.getinfo(c.HTTP_CODE)
+print(c.getinfo(c.HTTP_CODE))
 c.close()
