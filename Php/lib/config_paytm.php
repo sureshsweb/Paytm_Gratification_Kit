@@ -19,7 +19,7 @@ $PAYTM_DOMAIN = "pguat.paytm.com";
 $PAYTM_WALLET_DOMAIN = "trust-uat.paytm.in";
 if (PAYTM_ENVIRONMENT == 'PROD') {
 	$PAYTM_DOMAIN = 'secure.paytm.in';
-	$PAYTM_WALLET_DOMAIN = "trust.paytm.in"
+	$PAYTM_WALLET_DOMAIN = "trust.paytm.in";
 }
 
 define('PAYTM_REFUND_URL', 'https://'.$PAYTM_DOMAIN.'/oltp/HANDLER_INTERNAL/REFUND');
