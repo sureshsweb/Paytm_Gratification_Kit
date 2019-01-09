@@ -7,7 +7,7 @@
 
  */
 require 'lib/encdec_paytm.php';
-require 'lib/encdec_paytm.php';
+require 'lib/config_paytm.php';
 
 
 $data = array(  "request" => array( "requestType" => null,
